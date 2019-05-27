@@ -82,12 +82,19 @@ Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsE
 
 # Install homeOn-mqtt
   - Install via docker-compose, change Environment variables in the docker-compose.yaml file:
+  ```
     - SHUID=xxxxxxxxxxxxxxx (ID of the SHU)
     - UDP_PASSWORD=admin
     - UDP_CONNECTION_IP=192.168.1.32 (Local IP Adress of the SHU)
     - UDP_CONNECTION_PORT=5667 (Local UDP port of the SHU)        
     - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=true (Automatic generate HASS config file for homeon-mqtt, must be true at the first run, then can set to false and restart)
     - HOME_ASSISTANTE_GENERATE_SCRIPT=false (create hass's switch to control homeon's scripts activate)
+  ```
+    - Change path to the configuration directory of the Hass:
+  ```
+  volumes:
+      - path_to_hass_configuration:/config 
+  ```
   ```
   sudo docker-compose up -d
   ```

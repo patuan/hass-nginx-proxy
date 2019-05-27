@@ -1,0 +1,17 @@
+version: "2"
+services:
+  duckdns:
+    #change the image to x86 or arm64, depends on the cpu's architecture
+    image: linuxserver/duckdns:arm32v7-latest
+    container_name: duckdns
+    environment:
+      #- PUID=1000 #optional
+      #- PGID=1000 #optional
+      - TZ=Europe/London
+      # Your subdomain name of DuckDns
+      - SUBDOMAINS=xxxx
+      - TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      #- LOG_FILE=false #optional
+    #volumes:
+      #- </path/to/appdata/config>:/config #optional
+    restart: always

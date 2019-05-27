@@ -1,0 +1,29 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    container_name: nginx-proxy
+    image: alexanderkrause/rpi-nginx-proxy
+    volumes:
+      - ./cert:/etc/nginx/certs:ro
+      - ./config:/etc/nginx/conf.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+    network_mode: bridge
+    ports:
+      - 80:80
+      - 443:443 
+ 
+  nginx-letsencrypt:
+    restart: always
+    container_name: nginx-letsencrypt
+    image: alexanderkrause/rpi-letsencrypt-nginx-proxy-companion
+    volumes:
+      - ./cert:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx
+    network_mode: bridge

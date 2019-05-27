@@ -1,0 +1,13 @@
+version: '2'
+services:
+  home-assistant:
+    image: 'homeassistant/raspberrypi3-homeassistant'
+    container_name: 'hass'
+    restart: always
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - ./config:/config 
+    ports:
+      - 8123:8123
+    
+    network_mode: host

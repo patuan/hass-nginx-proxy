@@ -90,9 +90,9 @@ Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsE
     - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=true (Automatic generate HASS config file for homeon-mqtt, must be true at the first run, then can set to false and restart)
     - HOME_ASSISTANTE_GENERATE_SCRIPT=false (create hass's switch to control homeon's scripts activate)
   ```
-    - Change path to the configuration directory of the Hass:
   ```
   volumes:
+      #Change path to the configuration directory of the Hass:
       - path_to_hass_configuration:/config 
   ```
   ```

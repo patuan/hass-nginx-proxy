@@ -1,7 +1,10 @@
 version: '2'
 services:
   home-assistant:
+    #arm
     image: 'homeassistant/raspberrypi3-homeassistant'
+    #x86
+    #image: 'homeassistant/home-assistant'
     container_name: 'hass'
     restart: always
     volumes:

@@ -6,9 +6,6 @@
 
 Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsEncrypt)
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
 
 # Install HASS
   - Install via docker-compose:

@@ -6,10 +6,45 @@
 
 Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsEncrypt)
 
+## OS: Install RASBIAN Lite
+
+# Change rasberry hostname
+  ```
+  sudo vi /etc/hosts
+  ```
+  Change the 127.0.1.1 rassberrypi -> 127.0.1.1 [new_hostname]
+  ```
+  sudo vi /etc/hostname
+  ```
+  Replace with [new_hostname]
+  ```
+  passwd
+  ```
+  Change password
+
+# Setup network
+  ```
+  sudo raspi-config
+  ```
+  Static IP address:
+  ```
+  sudo vi /etc/dhcpcd.conf
+  ```
+  (You should not set static addresses, set reserve IPs in your router instead)
+
 # Download
   ```
   git clone https://github.com/patuan/hass-nginx-proxy.git ./hass-homeon-nginx
   ```
+# Install Docker
+  
+
+# Install MQTT
+  - Install via docker-compose
+  ```
+  sudo docker-compose up -d
+  ```
+
 
 # Install HASS
   - Install via docker-compose:

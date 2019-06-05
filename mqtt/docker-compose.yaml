@@ -1,0 +1,7 @@
+version: '2'
+services:
+  mqtt:
+    image: 'pascaldevink/rpi-mosquitto'
+    container_name: 'mqtt'
+    network_mode: host
+    restart: always

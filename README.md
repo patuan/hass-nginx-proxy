@@ -8,21 +8,30 @@ Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsE
 
 ## OS: Install RASBIAN Lite
 
-# Change rasberry hostname
-  ```
-  sudo vi /etc/hosts
-  ```
-  Change the 127.0.1.1 rassberrypi -> 127.0.1.1 [new_hostname]
-  ```
-  sudo vi /etc/hostname
-  ```
-  Replace with [new_hostname]
-  ```
-  passwd
-  ```
-  Change password
+# PI Zero connect over USB:
+Browse the MicroSD
 
-# Setup network
+Open the "config.txt" file
+
+Scroll all the way down to the bottom.
+
+Type "dtoverlay=dwc2" in the last line and then add an extra line after that.
+
+Save and close the file.
+
+Open "cmdline.txt" file
+
+Find a section after "rootwait"
+
+Paste "modules-load=dwc2,g_ether" in said section.
+
+Save and close the file.
+
+Create a new file called "ssh"
+
+Eject the MicroSD Card and place it on your Raspberry Pi
+
+# Change rasberry hostname, password, network
   ```
   sudo raspi-config
   ```
@@ -32,39 +41,34 @@ Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsE
   ```
   (You should not set static addresses, set reserve IPs in your router instead)
 
+## Get IP address
+  ```
+  ping hostname.local
+  ```
+
+## Enable SSH
+  Goto Interfacing Options/SSH
+
 # Download
   ```
-  git clone https://github.com/patuan/hass-nginx-proxy.git ./hass-homeon-nginx
+  sudo apt-get update
+  sudo apt-get install git
+  git clone https://github.com/patuan/hass-nginx-proxy.git
   ```
-# Install Docker
-  We run all components of the docker, for easy maintainance.
-  https://howchoo.com/g/nmrlzmq1ymn/how-to-install-docker-on-your-raspberry-pi
-
-  Note: If you're experiencing issues with the add-apt-repository command, you can add the line directly to the sources.list file. See below:
-  ```
-  sudo vim /etc/apt/sources.list
-  ```
-  Append the following:
-
-  https://apt.dockerproject.org/repo/raspbian-RELEASE main
-  Replace RELEASE with the Raspbian release you're using.
-
-  To find your release use:
-  ```
-  lsb_release -cs
-  ```
-  ------------
-
+# Install Docker & Docker-compose
   ```
   sh installdocker.sh
   ```
 
 # Install Docker Compose
-
+   ```
+  sh installdocker-compose.sh
+  ```
 
 # Install MQTT
   - Install via docker-compose
   ```
+  cd homeon-mqtt
   sudo docker-compose up -d
   ```
 

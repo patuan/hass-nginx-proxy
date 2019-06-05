@@ -37,7 +37,30 @@ Setup Home-assistant via Docker with nginx reverse proxy (support SSL with LetsE
   git clone https://github.com/patuan/hass-nginx-proxy.git ./hass-homeon-nginx
   ```
 # Install Docker
-  
+  We run all components of the docker, for easy maintainance.
+  https://howchoo.com/g/nmrlzmq1ymn/how-to-install-docker-on-your-raspberry-pi
+
+  Note: If you're experiencing issues with the add-apt-repository command, you can add the line directly to the sources.list file. See below:
+  ```
+  sudo vim /etc/apt/sources.list
+  ```
+  Append the following:
+
+  https://apt.dockerproject.org/repo/raspbian-RELEASE main
+  Replace RELEASE with the Raspbian release you're using.
+
+  To find your release use:
+  ```
+  lsb_release -cs
+  ```
+  ------------
+
+  ```
+  sh installdocker.sh
+  ```
+
+# Install Docker Compose
+
 
 # Install MQTT
   - Install via docker-compose

@@ -1,11 +1,5 @@
 version: '2'
 services:
-  mqtt:
-    image: 'pascaldevink/rpi-mosquitto'
-    container_name: 'mqtt'
-    network_mode: host
-    restart: always
-
   homeon-mqtt:
     image: 'patuan81/homeon-home-assistant:arm'
     container_name: 'homeon-mqtt'
@@ -17,12 +11,12 @@ services:
       - MQTT_CONNECTION=127.0.0.1:1883
       - MQTT_PASSWORD=
       - MQTT_USERNAME=
-      - SHUID=0000da9c09381900
-      - UDP_PASSWORD=minda
-      - UDP_CONNECTION_IP=192.168.11.33
+      - SHUID=xxxxxxxxxxxxxxxx
+      - UDP_PASSWORD=admin
+      - UDP_CONNECTION_IP=192.168.1.32
       - UDP_CONNECTION_PORT=5667
-      - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=false
+      - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=true
       - HOME_ASSISTANT_GENERATE_SCRIPT=false 
-      - HOME_ASSISTANT_DISCOVERY=true
+      - HOME_ASSISTANT_DISCOVERY=false
       - HOME_ASSISTANT_DISCOVERY_PREFIX=homeassistant
       

@@ -1,0 +1,38 @@
+homeassistant:
+  customize: !include_dir_merge_named customize
+  
+  latitude: 0
+  longitude: 0
+  elevation: 0
+  unit_system: metric
+  time_zone: Asia/Ho_Chi_Minh
+  
+  customize: !include_dir_merge_named customize
+  
+group: !include_dir_merge_named group
+switch: !include_dir_merge_list switch
+sensor: !include_dir_merge_list sensor
+binary_sensor: !include_dir_merge_list binary_sensor
+cover: !include_dir_merge_list cover
+climate: !include_dir_merge_list climate
+fan: !include_dir_merge_list fan
+light: !include_dir_merge_list light
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+default_config:
+
+frontend:
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+
+# google_assistant:
+#   project_id: xxx
+#   api_key: xxx
+
+homekit:
+
+#discovery:

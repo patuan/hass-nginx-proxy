@@ -1,7 +1,9 @@
 version: '2'
 services:
   home-assistant:
-    #arm
+    #pi zeroW
+    image: 'homeassistant/armhf-homeassistant'
+    #pi3
     image: 'homeassistant/raspberrypi3-homeassistant'
     #x86
     #image: 'homeassistant/home-assistant'
@@ -10,7 +12,5 @@ services:
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - ./config:/config 
-    ports:
-      - 8123:8123
     
     network_mode: host

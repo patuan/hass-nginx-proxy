@@ -76,9 +76,49 @@ Eject the MicroSD Card and place it on your Raspberry Pi
 # Install HASS
   - Install via docker-compose:
   ```
+  cd hass
   sudo docker-compose up -d
   ```
+  Copy the _config/configuration.yaml into config/ directory
+  ```
+  cp _config/configuration.yaml config/
+  docker restart hass
+  ```
     
+# Install homeOn-mqtt
+  - Install via docker-compose, change Environment variables in the docker-compose.yaml file:
+  ```
+    - MQTT_CONNECTION=127.0.0.1:1883 (Địa chỉ MQTT)
+    - MQTT_PASSWORD=
+    - MQTT_USERNAME=
+    - SHUID=xxxxxxxxxxxxxxx (ID of the SHU)
+    - UDP_PASSWORD=admin
+    - UDP_CONNECTION_IP=192.168.1.32 (Local IP Adress of the SHU)
+    - UDP_CONNECTION_PORT=5667 (Local UDP port of the SHU)        
+    - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=false (Automatic generate HASS config file for homeon-mqtt, must be true at the first run, then can set to false and restart)
+    - HOME_ASSISTANTE_GENERATE_SCRIPT=true (create hass's switch to control homeon's scripts activate)
+    - HOME_ASSISTANT_DISCOVERY=true (Hỗ trợ MQTT Discovery, nếu true, tắt HOME_ASSISTANT_AUTO_GENERATE_CONFIG=false)
+    - HOME_ASSISTANT_DISCOVERY_PREFIX=homeassistant (MQTT Discovery topic prefix)
+  ```
+  ```
+  volumes:
+      #Change path to the configuration directory of the Hass:
+      - path_to_hass_configuration:/config 
+  ```
+  ```
+  sudo docker-compose up -d
+  ```
+# Install Duckdns for Dynamic Domain name
+  - Install via docker-compose, set the duckdns info in the docker-compose.yaml file:
+  ```
+  environment:
+      - SUBDOMAINS=xxxx
+      - TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  ```
+  ```
+  sudo docker-compose up -d
+  ```
+  
 # Install NGINX PROXY for LetsEncrypt
   - Install via docker-compose:
   ```
@@ -128,64 +168,6 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   docker restart nginx-for-hass
   ```
   
-# Install Duckdns for Dynamic Domain name
-  - Install via docker-compose, set the duckdns info in the docker-compose.yaml file:
-  ```
-  environment:
-      #- PUID=1000 #optional
-      #- PGID=1000 #optional
-      - TZ=Europe/London
-      # Your subdomain name of DuckDns
-      - SUBDOMAINS=xxxx
-      - TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  ```
-  ```
-  sudo docker-compose up -d
-  ```
 
-# Install homeOn-mqtt
-  - Install via docker-compose, change Environment variables in the docker-compose.yaml file:
-  ```
-    - MQTT_CONNECTION=127.0.0.1:1883 (Địa chỉ MQTT)
-    - MQTT_PASSWORD=
-    - MQTT_USERNAME=
-    - SHUID=xxxxxxxxxxxxxxx (ID of the SHU)
-    - UDP_PASSWORD=admin
-    - UDP_CONNECTION_IP=192.168.1.32 (Local IP Adress of the SHU)
-    - UDP_CONNECTION_PORT=5667 (Local UDP port of the SHU)        
-    - HOME_ASSISTANT_AUTO_GENERATE_CONFIG=false (Automatic generate HASS config file for homeon-mqtt, must be true at the first run, then can set to false and restart)
-    - HOME_ASSISTANTE_GENERATE_SCRIPT=true (create hass's switch to control homeon's scripts activate)
-    - HOME_ASSISTANT_DISCOVERY=true (Hỗ trợ MQTT Discovery, nếu true, tắt HOME_ASSISTANT_AUTO_GENERATE_CONFIG=false)
-    - HOME_ASSISTANT_DISCOVERY_PREFIX=homeassistant (MQTT Discovery topic prefix)
-  ```
-  ```
-  volumes:
-      #Change path to the configuration directory of the Hass:
-      - path_to_hass_configuration:/config 
-  ```
-  ```
-  sudo docker-compose up -d
-  ```
-  - Change the configuration.yaml of Hass (/hass/config):
-    - Change customization: 
-        ```
-        customize: !include_dir_merge_named customize
-        ```
-    - Change group, light, switch ,...:
-        ```
-        group: !include_dir_merge_named group
-        switch: !include_dir_merge_list switch
-        sensor: !include_dir_merge_list sensor
-        binary_sensor: !include_dir_merge_list binary_sensor
-        cover: !include_dir_merge_list cover
-        climate: !include_dir_merge_list climate
-        fan: !include_dir_merge_list fan
-        light: !include_dir_merge_list light
-        ```
-    - Set Mqtt connection:
-        ```
-        mqtt:
-          broker: 127.0.0.1
-          port: 1883
-        ```
-    - Restart hass 
+
+

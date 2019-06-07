@@ -8,7 +8,7 @@ homeassistant:
   time_zone: Asia/Ho_Chi_Minh
   
   customize: !include_dir_merge_named customize
-  
+
 group: !include_dir_merge_named group
 switch: !include_dir_merge_list switch
 sensor: !include_dir_merge_list sensor
@@ -21,6 +21,11 @@ light: !include_dir_merge_list light
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+
+#change xxxx to your subdomain
+http:
+  base_url: https://ha.xxxx.duckdns.org
+  
 default_config:
 
 frontend:

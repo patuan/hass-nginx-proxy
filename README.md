@@ -79,12 +79,22 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   cd hass
   sudo docker-compose up -d
   ```
-  Copy the _config/configuration.yaml into config/ directory
+  Move the configuration.yaml into config/ directory
   ```
-  cp _config/configuration.yaml config/
+  mv configuration.yaml config/
+  ```
+
+  Change the xxxx in configuration.yaml to your subdomain:
+  ```
+  http:
+    base_url: https://ha.xxxx.duckdns.org
+  ```
+
+  Restart Hass:
+  ```
   docker restart hass
   ```
-    
+  
 # Install homeOn-mqtt
   - Install via docker-compose, change Environment variables in the docker-compose.yaml file:
   ```
@@ -128,12 +138,17 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   ```
   docker stop nginx-gen
   ```
-  Change the server address of Hass in config/default.conf to:
+  Change the server address of Hass in config/default.conf (server 127.0.0.1 down;) to:
   ```
   server 192.168.11.3:8123;
   ```
   where "192.168.11.3" is the IP address of the Pi in local network.
   
+
+  Restart nginx-ssl
+  ```
+  docker restart nginx-ssl
+  ```
 
 <!-- # Install NGINX PROXY for HASS
 ### Install this as a proxy between NGINX PROXY for LetsEnrypt and HASS, because HASS run on Host Network, so the NGINX PROXY for LetsEncrypt can not create proxy directly to HASS

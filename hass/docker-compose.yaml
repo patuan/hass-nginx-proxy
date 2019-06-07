@@ -4,7 +4,7 @@ services:
     #pi zeroW
     image: 'homeassistant/armhf-homeassistant'
     #pi3
-    image: 'homeassistant/raspberrypi3-homeassistant'
+    #image: 'homeassistant/raspberrypi3-homeassistant'
     #x86
     #image: 'homeassistant/home-assistant'
     container_name: 'hass'
@@ -14,3 +14,10 @@ services:
        - ./config:/config 
     
     network_mode: host
+    environment:
+      #change xxxx to the Duckdns domain name
+      #change your email to receive LetsEncrypt Notifications
+      - VIRTUAL_HOST=ha.xxxx.duckdns.org
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST=ha.xxxx.duckdns.org
+      - LETSENCRYPT_EMAIL=youremail@gmail.com

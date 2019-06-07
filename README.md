@@ -124,8 +124,18 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   ```
   sudo docker-compose up -d
   ```
+  Wait for Lesencrypt finish (after a few minutes), stop nginx-gen, 
+  ```
+  docker stop nginx-gen
+  ```
+  Change the server address of Hass in config/default.conf to:
+  ```
+  server 192.168.11.3:8123;
+  ```
+  where "192.168.11.3" is the IP address of the Pi in local network.
   
-# Install NGINX PROXY for HASS
+
+<!-- # Install NGINX PROXY for HASS
 ### Install this as a proxy between NGINX PROXY for LetsEnrypt and HASS, because HASS run on Host Network, so the NGINX PROXY for LetsEncrypt can not create proxy directly to HASS
   - Install via docker-compose, set the domain properly in docker-compose file, ex: ha.xxxx.duckdns.org:
   ```
@@ -166,7 +176,7 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   ```
   ```
   docker restart nginx-for-hass
-  ```
+  ``` -->
   
 
 

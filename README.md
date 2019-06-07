@@ -54,6 +54,7 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   sudo apt-get update
   sudo apt-get install git
   git clone https://github.com/patuan/hass-nginx-proxy.git
+  cd hass-nginx-proxy
   ```
 # Install Docker & Docker-compose
   ```

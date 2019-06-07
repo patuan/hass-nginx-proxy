@@ -3,7 +3,7 @@ version: "2"
 services:
   nginx-ssl-proxy:
     restart: always
-    image: lroguet/rpi-nginx-proxy
+    image: tobi312/rpi-nginx
     container_name: nginx-ssl 
     ports:
       - "80:80"

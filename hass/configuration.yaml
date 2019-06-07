@@ -21,11 +21,13 @@ light: !include_dir_merge_list light
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+camera: !include camera.yaml
+stream:
 
 #change xxxx to your subdomain
 http:
   base_url: https://ha.xxxx.duckdns.org
-  
+
 default_config:
 
 frontend:

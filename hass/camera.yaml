@@ -1,0 +1,11 @@
+#dahua
+# - platform: generic
+#   name: Balcony
+#   still_image_url: http://[username]:[password]@[ip:http_port]/cgi-bin/snapshot.cgi?channel=[channel]
+#   stream_source: rtsp://[username]:[password]@[ip:rtsp_port]/cam/realmonitor?channel=[channel]&subtype=[stream_index]
+
+#hikvision
+# - platform: generic
+#   name: Tang 2
+#   still_image_url: http://[username]:[password]@[ip:http_port]/ISAPI/Streaming/channels/[channel]/picture
+#   stream_source: rtsp://[username]:[password]@[ip:rtsp_port]/Streaming/Channels/[channel]0[stream_index]

@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx-for-hass:
-    image: tobi312/rpi-nginx
+    image: lroguet/rpi-nginx-proxy
     container_name: nginx-for-hass
     network_mode: bridge
     restart: always

@@ -69,7 +69,7 @@ Eject the MicroSD Card and place it on your Raspberry Pi
 # Install MQTT
   - Install via docker-compose
   ```
-  cd homeon-mqtt
+  cd mqtt
   sudo docker-compose up -d
   ```
 
@@ -80,9 +80,9 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   cd hass
   sudo docker-compose up -d
   ```
-  Move the configuration.yaml into config/ directory
+  Move the configuration.yaml, camera.yaml into config/ directory
   ```
-  mv configuration.yaml config/
+  sudo mv *.yaml config/
   ```
 
   Change the xxxx in configuration.yaml to your subdomain:
@@ -135,7 +135,11 @@ Eject the MicroSD Card and place it on your Raspberry Pi
   ```
   sudo docker-compose up -d
   ```
-  Wait for Lesencrypt finish (after a few minutes), stop nginx-gen, 
+  Wait for Letsencrypt finish (after a few minutes, please check the logs of Letsencrypt container)
+  ```
+  docker logs -f nginx-letsencrypt
+  ```
+  Stop nginx-gen, 
   ```
   docker stop nginx-gen
   ```
